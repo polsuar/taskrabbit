@@ -18,7 +18,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to @task
     else
-      render 'new'
+      render 'New'
     end
   end
 
@@ -26,9 +26,16 @@ class TasksController < ApplicationController
   end
 
   def update
+    if @task.update(task_params)
+      redirect_to @task
+    else
+      render "Edit"
+    end
   end
 
   def destroy
+    @task.destroy
+    redirect_to root_path
   end
 
   private
